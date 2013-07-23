@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Sign in</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="LoginPage">
+        <meta version="1.1" date="2013/7/22">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <!-- Split line -->
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />
+        <!-- login framework -->
+        <div class="container-fluid">      
+            <div class="row-fluid">
+                <div class="span2">
+                    <!-- reserve for else -->
+                </div>
+                <div class="span4">
+                    <form class="form-signin" action="/login/" method="post">
+                    {% csrf_token %}
+                        <h2 class="form-signin-heading" align="center">Dealer</h2>
+
+                        <input type="text" class="input-block-level" placeholder="User ID" name="dealerIDInput" id="dealerIDInput">
+                        <input type="password" class="input-block-level" placeholder="Password" name="passwordInput" id="passwordInput">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                        <button class="btn btn-primary btn-block" type="submit" value="login">Sign in</button>
+                        <a href="register">Register</a>
+                    </form>
+                </div>
+                <div class="span4">
+                    <form class="form-signin" action="/supervisorLogin/" method="post">
+                    {% csrf_token %}
+                        <h2 class="form-signin-heading" align="center">Supervisor</h2>
+
+                        <input type="text" class="input-block-level" placeholder="User ID" name="supervisorIDInput" id="supervisordealerIDInput">
+                        <input type="password" class="input-block-level" placeholder="Password" name="supervisorpasswordInput" id="supervisorpasswordInput">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                        <button class="btn btn-primary btn-block" type="submit" value="login">Sign in</button>
+                        <a href="/supervisorRegister/">Register</a>
+                    </form>
+                </div> 
+                <div class="span2">
+                    <!-- reserve for else -->
+                </div>
+            </div>
+
+
+    <!--  ===============================================-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="site_media/js/jquery.js"></script>
+    <script type="text/javascript" src="site_media/js/bootstrap.js"></script>
+    
+    </body>
+</html>

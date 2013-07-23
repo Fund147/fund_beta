@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Verify Fund Allocation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="VerifyAllocationPage">
+        <meta version="1.1" date="2013/7/23">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Fund Allocation Verify</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+        
+        <!-- Show result here -->
+        <div class="container-fluid">
+        	<div class="row-fluid">
+        		<div class="span5">
+        			<!-- reserve for else -->
+        		</div>
+        		<form action="/saveResult/{{trans.id}}" method="get">
+        		<div class="span4">
+        			<div class="control-group">
+        				<label><strong>Consignment No:</strong></label>
+        				<div class="controls">
+        					<input type="text" id="consignmentNo" name="consignmentNo" value={{trans.consignmentNo}}>
+        				</div>
+        			</div>
+        			<div class="control-group">
+        				<label><strong>Result:</strong></label>
+        				<div class="controls">
+        					<input type="text" id="is_pass" name="is_pass" placeholder="y/n">
+        				</div>
+        			</div>
+        			<div class="control-group">
+        				<label><strong>Reason:</strong></label>
+        				<div class="controls">
+        					<input type="text" id="reason" name="reason">
+        				</div>
+        			</div>
+        			<button>Confirm</button>
+        		</div>
+        		</form>
+
+        		<div class="span4">
+        			<!-- reserve for else -->
+        		</div>
+        	</div>
+        </div>
+		
+</body>
+</html>

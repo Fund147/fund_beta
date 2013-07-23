@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Property Information Table</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="propertyInfoPage">
+        <meta version="1.1" date="2013/7/22">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Modify Fund Information</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+        
+        <!-- Show a fund form here. -->
+        <div class="container-fluid">
+          <div class="row-fluid">
+              <div class="span4">
+                <!-- reserve for else -->
+              </div>
+              <div class="span5">
+                  <form class="form-horizontal" action="" method="get" >
+                  <div class="control-group">
+                    <label class="control-label" for="fundCode">Fund Code:</label>
+                    <div class="controls">
+                      <input name="tID" type="text" id="tID" value={{ass.tID}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="aName">Fund Name:</label>
+                    <div class="controls">
+                      <input name="aName" type="text" id="aName" value={{ass.aName}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="aClass">Fund Type:</label>
+                    <div class="controls">
+                      <input name="aClass" type="text" id="aClass" value={{ass.aClass}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="aMarket">Transaction Market:</label>
+                    <div class="controls">
+                    <input name="aMarket" type="text" id="aMarket" value={{ass.aMarket}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="currency">Currency:</label>
+                    <div class="controls">
+                    <input name="currency" type="text" id="currency" value={{ass.currency}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="lotSize">Lot Price:</label>
+                    <div class="controls">
+                      <input name="lotSize" type="text" id="lotSize" value={{ass.lotSize}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="pPrice">Last Day Closing Price:</label>
+                    <div class="controls">
+                      <input name="pPrice" type="text" id="pPrice" value={{ass.pPrice}} disabled="disabled">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="tPrice">Today Closing Price:</label>
+                    <div class="controls">
+                      <input name="tPrice" type="text" id="tPrice" value={{ass.tPrice}} disabled="disabled">
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="button" class="btn"><a href="javascript:window.close()">Close</a></button>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div class="span3">
+                <!-- reserve for else -->
+              </div>
+          </div>
+        </div>
+        
+    <!--  ===============================================-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="site_media/js/jquery.js"></script>
+    <script type="text/javascript" src="site_media/js/bootstrap.js"></script>
+    </body>
+</html>

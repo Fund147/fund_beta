@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Fund Allocation Result</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="AllocationResultPage">
+        <meta version="1.1" date="2013/7/23">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Fund Allocation Information</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+        
+        <!-- Show result here -->
+        <div class="container-fluid">
+        	<div class="row-fluid">
+        		<div class="span4">
+        			<!-- reserve for else -->
+        		</div>
+        		<form action="/AllocationInformation/{{Resultid_from_url}}" method="get" class="form-vertical">
+        		<div class="span3">
+        			<div class="control-group">
+        				<h4><strong>Allocated Customers</strong></h4>
+        				{% for a in results%}
+        				<div class="controls">
+        					<h4>{{a.cID}}</h4>
+        				</div>
+        				{% endfor%}
+        			</div>
+        		</div>
+        		<div class="span3">
+        			<div class="control-group">
+        				<h4><strong>Allocated Amount</strong></h4>
+        				{% for a in results%}
+        				<div class="controls">
+        					<h4>{{a.allocationInformation}}</h4>
+        				</div>
+        				{% endfor%}
+        			</div>
+
+        		</div>
+
+
+        		<div class="span2">
+        			<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        			<button class="btn">Edit</button>
+        			<button class="btn" type="button"><a href="/index/">Close</a></button>
+        		</div> 
+        		</form>
+        	</div>
+        </div>
+
+</body>
+</html>

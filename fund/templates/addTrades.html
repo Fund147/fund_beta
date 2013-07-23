@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Fund Adding Table</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="addPage">
+        <meta version="1.1" date="2013/7/22">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Please Insert Information</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+        <!-- Create a adding fund form here. -->
+        <div class="container-fluid">
+          <div class="row-fluid">
+              <div class="span4">
+                <!-- reserve for else -->
+              </div>
+              <div class="span5">
+                  <form class="form-horizontal" action="/test/" method="get" >
+                  <div class="control-group">
+                    <label class="control-label" for="fundCode">tID:</label>
+                    <div class="controls">
+                      <input name="tID" type="text" id="tID">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="account">tAccount:</label>
+                    <div class="controls">
+                      <input name="tAccount" type="text" id="tAccount">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="authorizeNum">consignmentNo:</label>
+                    <div class="controls">
+                      <input name="consignmentNo" type="text" id="consignmentNo">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="dealedNum">transactionNo:</label>
+                    <div class="controls">
+                    <input name="transactionNo" type="text" id="transactionNo">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="dealedAmount">transationAmount:</label>
+                    <div class="controls">
+                    <input name="transationAmount" type="text" id="transationAmount">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="dealedPrice">transationPrice:</label>
+                    <div class="controls">
+                      <input name="transationPrice" type="text" id="transationPrice">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="startDate">tdate:</label>
+                    <div class="controls">
+                      <input name="tdate" type="text" id="tdate" placeholder="yyyy-mm-dd">
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="dealedPrice">customerNumber:</label>
+                    <div class="controls">
+                      <input name="customerNumber" type="text" id="customerNumber">
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn">Add</button>
+                    <button type="button" class="btn"><a href="/index/">Close</a></button>
+                    <button type="reset" class="btn">Reset</button>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div class="span3">
+                <!-- reserve for else -->
+              </div>
+          </div>
+        </div>
+        
+    <!--  ===============================================-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="site_media/js/jquery.js"></script>
+    <script type="text/javascript" src="site_media/js/bootstrap.js"></script>
+    </body>
+</html>

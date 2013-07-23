@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Fund Allocation Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="AllocPage">
+        <meta version="1.1" date="2013/7/22">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Fund Allocation</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+
+        <!-- Show Allocated Result here -->
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2">
+                    <!-- reserve for else -->
+                </div>
+                <div class="span4">
+                    	<div class="control-group">
+                    		<label class="control-label"><strong>Allocated Customers:</strong></label>
+                    	</div>                   	        
+                    	<form action="/AllocateResult/{{Allocateid_from_url}}" method="get">
+                    	{% for customerAccount in cus %}
+                    	<div class="controls">
+                    		<label class="control-group">{{customerAccount.cID}}</label>
+                    	</div>
+                    	{% endfor %}
+                    
+                </div>
+                <div class="span4">
+                    <p><strong>Allocation Models</strong></p>		
+					<select name = 'extra_condition'>
+						<option value = 'Single' {% ifequal extra_condition 'Single' %} selected = 'selected' {% endifequal %}>Single</option>
+						<option value = 'Waterfall' {% ifequal extra_condition 'Waterfall' %} selected = 'selected' {% endifequal %}>Waterfall</option>
+						<option value = 'Pro-rata' {% ifequal extra_condition 'Pro-rata' %} selected = 'selected' {% endifequal %}>Pro-rata</option>	
+					</select><br /><br /><br /><br />
+					<button type="submit">Confirm</button>             	
+                </div>
+                <div class="span2">
+                    <!-- reserve for else -->
+                </div>
+            </div>
+        </div>
+		</form>
+	</body>
+</html>

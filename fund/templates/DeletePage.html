@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Fund Deleting Table</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="JorMa" content="DeletePage">
+        <meta version="1.1" date="2013/7/22">
+        
+        <!-- styles -->
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+    </head>
+    <body>
+        <!-- Header -->
+        <h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
+        <h3 class="text-center" style="margin: 25px 0;">Delete Fund Information</h3>    
+        <div style="height:1px; background:#ccc; margin: 0 15px;"></div>
+        <br />    
+        
+        <!-- Show a fund form here. -->
+        <div class="container-fluid">
+          <div class="row-fluid">
+              <div class="span4">
+                <!-- reserve for else -->
+              </div>
+              <div class="span5">
+                  <form class="form-horizontal" action="/DeleteSave/{{trans.id}}" method="get" >
+                  <div class="control-group">
+                    <label class="control-label" for="fundCode">Fund Code:</label>
+                    <div class="controls">
+                      <input name="tID" type="text" id="tID" value={{trans.tID}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="tAccount">Account:</label>
+                    <div class="controls">
+                      <input name="tAccount" type="text" id="tAccount" value={{trans.tAccount}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="consignmentNo">Consignment No:</label>
+                    <div class="controls">
+                      <input name="consignmentNo" type="text" id="consignmentNo" value={{trans.consignmentNo}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="transactionNo">Transaction No:</label>
+                    <div class="controls">
+                    <input name="transactionNo" type="text" id="transactionNo" value={{trans.transactionNo}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="transactionAmount">Transation Amount:</label>
+                    <div class="controls">
+                    <input name="transationAmount" type="text" id="transationAmount" value={{trans.transationAmount}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="transationPrice">Transation Price:</label>
+                    <div class="controls">
+                      <input name="transationPrice" type="text" id="transationPrice" value={{trans.transationPrice}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="tdate">Start Date:</label>
+                    <div class="controls">
+                      <input name="tdate" type="text" id="tdate" placeholder="yyyy-mm-dd" value={{trans.tdate}}>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="customerNumber">Customer Number:</label>
+                    <div class="controls">
+                      <input name="customerNumber" type="text" id="customerNumber" value={{trans.customerNumber}}>
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                  <div class="controls">
+                    <button type="submit" class="btn" id="submit">Delete</button>
+                    <button type="button" class="btn"><a href="/index/">Close</a></button>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div class="span3">
+                <!-- reserve for else -->
+              </div>
+          </div>
+        </div>
+        
+    <!--  ===============================================-->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="site_media/js/jquery.js"></script>
+    <script type="text/javascript" src="site_media/js/bootstrap.js"></script>
+    </body>
+</html>
