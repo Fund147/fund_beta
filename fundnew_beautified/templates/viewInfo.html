@@ -6,7 +6,7 @@
         <title>Fund Allocation Result</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="JorMa" content="AllocResultPage">
-        <meta version="1.1" date="2013/7/23">
+        <meta version="1.1" date="2013/7/24">
         
         <!-- styles -->
         <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
@@ -31,16 +31,17 @@
                         <div class="control-group"> 
                             <label class="control-label"><strong>Dealer:</strong></label>
                             <div class="controls">
-                                <label class="control-label">{{trans.tdealer}}</label>
+                                <input value={{trans.tdealer}} disabled="disabled">
                             </div>
                         </div>
 
 
                     {%  for r in res %}
                     <div class="control-group">
+                        <label class="control-label">Customers & Amount:</label>
                         <div class="controls">
-                            <label class="control-label">{{r.cID}}</label>
-                            <label class="control-label">{{r.allocaionInformation}}</label>
+                            <input value={{r.cID}} disabled="disabled">
+                            <input value={{r.allocationInformation}} disabled="disabled">
                         </div>
                     </div>
                     {% endfor %}
@@ -49,28 +50,37 @@
                     <div class="control-group">
                         <div class="controls">
                             <label class="control-label"><strong>Supervisor:</strong></label>
-                            <label class="control-label">{{che.sNmae}}</label>
+                            <input value={{che.sName}} disabled="disabled">
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="controls">
                             <label class="control-label"><strong>Reason:</strong></label>
-                            <label class="control-label">{{che.checkInformation}}</label>
+                            <input value={{che.checkInformation}} disabled="disabled">
                         </div>
                     </div>
                     {% endif%}
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn"><a href="javascript:window.close()">Close</a></button> 
+                        </div>
+                    </div>
+                                  
                     </form>
+
                 </div>
 
                 <div class="span4">
                     <!-- reserve for else -->
                 </div>
+
             </div>
         </div>
 	<!--  ===============================================-->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/javascript" src="site_media/js/jquery.js"></script>
-    <script type="text/javascript" src="site_media/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/site_media/js/jquery.js"></script>
+    <script type="text/javascript" src="/site_media/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/site_media/js/myScript.js"></script>
     
 	</body>
 </html>

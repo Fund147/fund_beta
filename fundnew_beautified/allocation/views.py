@@ -7,9 +7,10 @@ from addTraderForm import *
 from django.core.context_processors import csrf
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.template import RequestContext
 import itertools
-import pika
 import datetime
+import pika
 
 from mmap import mmap,ACCESS_READ
 from xlrd import open_workbook
@@ -151,18 +152,56 @@ def index(request):
  	#return render_to_response('index.html',{'transationRecord.number':1})
 
 def supervisorIndex(request):
+	#trans = transationRecord.objects.filter(tState='distribute')
+	tra = []
 	trans = []
-
 	connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 	channel = connection.channel()
 
 	channel.queue_declare(queue='helloWorld')
 	def callback(ch, method, properties, body):
-		tra = transationRecord.objects.get(consignmentNo=body)
-		trans.append(tra)
+		tran = transationRecord.objects.get(consignmentNo=body)
+		tra.append(tran)
 	channel.basic_consume(callback,queue='helloWorld',no_ack=True)
-	
+
+	for r in tra:
+		rec = cacheResult(consignmentNo=r.consignmentNo)
+		rec.save()
+
+	recs = cacheResult.objects.all()
+	if len(recs)>0:
+		for r in range(1):
+			rec = supervisorResult(sName=request.session["sName"],consignmentNo=recs[r].consignmentNo)
+			rec.save()
+			de = cacheResult(id=recs[r].id)
+			de.delete()
+
+	#for r in tra:
+	#	rec = supervisorResult(sName=request.session["sName"],consignmentNo=r.consignmentNo)
+	#	rec.save()
+	sup = supervisorResult.objects.filter(sName=request.session["sName"])
+	for s in sup:
+		temp = transationRecord.objects.get(consignmentNo=s.consignmentNo)
+		if temp.tState == 'distribute':
+			trans.append(temp)
+			transation = transationRecord.objects.get(consignmentNo=recs[r].consignmentNo)
+			tid = transation.id
+			tdealer = transation.tdealer
+			tID = transation.tID
+			tAccount = transation.tAccount
+			transactionNo = transation.transactionNo
+			transationAmount = transation.transationAmount
+			transationPrice = transation.transationPrice
+			tdate = transation.tdate
+			customerNumber = transation.customerNumber
+			transa = transationRecord(id=tid,tdealer=tdealer,tState='receipt',tID=tID,tAccount=tAccount,consignmentNo=recs[r].consignmentNo,transactionNo=transactionNo,transationAmount=transationAmount,transationPrice=transationPrice,tdate=tdate,customerNumber=customerNumber)
+			transa.save()
+		else:
+			t = s.id
+			de = supervisorResult(id=t)
+			de.delete()
 	return render_to_response('supervisorIndex.html',locals())
+	
 
 
 def supervisorCheckPage(request,supervisorcheckid_from_url):
@@ -375,7 +414,17 @@ def single_allocate(cus):
 	transa = transationRecord(id=tid,tdealer=tdealer,tState='distribute',tID=tID,tAccount=tAccount,consignmentNo=con,transactionNo=transactionNo,transationAmount=transationAmount,transationPrice=transationPrice,tdate=tdate,customerNumber=customerNumber)
 	transa.save()
 
+	t = transa.consignmentNo
+	connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+	channel = connection.channel()
 
+	channel.queue_declare(queue='helloWorld')
+
+	channel.basic_publish(exchange='',
+						routing_key='helloWorld',
+						body=t)
+	#print " [x] Sent 'Hello World!'"
+	connection.close()
 
 	results = result.objects.filter(consignmentNo=con)
 	return results
@@ -537,7 +586,6 @@ def waterfall_allocate(cus):
 	results = result.objects.filter(consignmentNo=con)
 	return results
 
-
 def AllocationInformation(request,AllocationInfoid_from_url):
 	trans = transationRecord.objects.get(id=AllocationInfoid_from_url)
 	con = trans.consignmentNo
@@ -558,7 +606,8 @@ def SaveEditAllocation(request,SaveEditAllocationid_from_url):
 	con = result.objects.get(id=SaveEditAllocationid_from_url)
 	cog = con.consignmentNo
 	cus = result.objects.filter(consignmentNo=cog)
-	return render_to_response('AllocationInformation.html',locals())
+
+	return render_to_response('AllocationInformation.html',locals()) 
 
 def CheckPage(request,checkid_from_url):
 	trans = transationRecord.objects.get(id=checkid_from_url)

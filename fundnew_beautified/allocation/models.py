@@ -61,3 +61,12 @@ class supervisor(models.Model):
 	sID = models.IntegerField()
 	password = models.CharField(max_length=30)
 	contractInformation = models.CharField(max_length=30)
+
+
+class supervisorResult(models.Model):
+	sName = models.CharField(max_length=30)
+	consignmentNo = models.CharField(max_length=30)
+
+
+class cacheResult(models.Model):
+	consignmentNo = models.CharField(max_length=30)

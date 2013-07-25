@@ -1,31 +1,27 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-
 <!DOCTYPE html>
 
+{% load pagination_tags %}
 <html lang="en">
 	<head>
-		<<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <title>Main Page</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="JorMa" content="MainPage">
-        <meta version="1.1" date="2013/7/22">
-        
-        <!-- styles -->
-        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.css">
-        <link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Main Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="JorMa" content="MainPage">
+		<meta version="1.1" date="2013/7/22">
+		<!-- Styles -->
+		<link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-responsive.min.css">
+		<link rel="stylesheet" type="text/css" href="/site_media/css/myStyle.css">
     </head>
 
 	<body>
-		<script type="/site_media/js/bootstrap.min.js"></script>
-		<script src="http://code.jquery.com/jquery.js"></script>
-		<script type="text/javascript" src="/site_media/js/myScript.js"></script>
 		<div class="container-fluid">
 			<!-- Header -->
 			<div class="row-fluid">
 				<h2 class="text-center" style="margin: 25px 0;">Fund Allocation System</h2>
-
+				
 			<!-- Split line -->
 			<div class="row-fluid">
 				<div style="height:1px; background:#ccc; margin: 0 15px;"></div>
@@ -34,36 +30,41 @@
 			<div class="row-fluid">
 				<!--Sidebar content-->
 				<div class="span1">
-					<!-- reserve for else -->
+					<!-- Reserve for else -->
 				</div>
 
 				<!--Body content-->
 				<div class="span10">
-					<div>
+					<div class="addRecord">
 						<ul class="nav nav-tabs" style="margin: 20px 0px;">
-							<li class="active"><a href="#collapse3" data-toggle="collapse">Adding Record</a></li>
+							<li class="active"><a href="#collapse1" data-toggle="collapse">Adding Record</a></li>
 						</ul>
-						<div class="collapse in" id="collapse3">
-							<label><strong>Adding Fund Record: &nbsp&nbsp</strong><button class="btn"><a href="/tradesTable">Press</a></button></label><br />
 
-							<!-- Split line -->
-							<div class="row-fluid">
-								<div style="height:1px; background:#ccc; margin: 0 15px;"></div>
-							</div><br />
-
-							<form enctype="multipart/form-data" method="GET" action="/read/" class="form-inline form-search">
-							<div>
-								<strong>Upload File: &nbsp&nbsp</strong><input type="file" name="filename" value="Select File"/> <Br/>
-					   			<button type="submit" class="btn">Import</button>
+						<div class="collapse in" id="collapse1">
+							<div class="span4 offset1">
+							<strong>Input Fund Record: &nbsp &nbsp</strong><a class="btn" href="/tradesTable">Press to add</a>
 							</div>
-							</form>
+
+							<div>
+								<form class="form-inline form-search" enctype="multipart/form-data" method="GET" action="/read/">
+									<div>
+									<strong>Upload File: &nbsp&nbsp</strong>
+									<input type="file" class="btn" id="t_file" onchange="f_file.value=this.value" style="display:none;">
+									<input type="text" class="input-xlarge" id="f_file" placeholder="file path…">
+									<input type="button" class="btn" onclick="t_file.click();" onmouseover="fclick(t_file)" value="Select File"> 
+									<input type="submit" class="btn" value="Import">
+									</div>
+								</form>
+							</div>
 						</div>						
 					</div>
+
 					<div class="recordTable">
 						<ul class="nav nav-tabs" style="margin: 20px 0px;">
-							<li class="active"><a href="#collapse1" data-toggle="collapse">Transaction Record</a></li>
+							<li class="active"><a href="#collapse2" data-toggle="collapse">Transaction Record</a></li>
 						</ul>
-						<div class="collapse out" id="collapse1">
+
+						<div class="collapse in" id="collapse2">
 							<table class="table table-hover">
 								<!-- Table header -->
 								<thead>
@@ -90,11 +91,24 @@
 
 								<!-- Table body -->
 								<tbody>
-								{% for transationRecord in trans %}
+								{% autopaginate trans 5 %}
+									{% for transationRecord in trans %}
 									<tr>
 										<td>{{transationRecord.id}}</td>
 										<td>{{transationRecord.tdealer}}</td>
-										<td>{{transationRecord.tState}}</td>
+										<td>{% ifequal transationRecord.tState "undistribute" %}
+												<span class="label">{{transationRecord.tState}}</span>
+											{% endifequal %}
+											{% ifequal transationRecord.tState "distribute" %}
+												<span class="label label-info">{{transationRecord.tState}}</span>
+											{% endifequal %}
+											{% ifequal transationRecord.tState "Pass" %}
+												<span class="label label-success">{{transationRecord.tState}}</span>
+											{% endifequal %}
+											{% ifequal transationRecord.tState "Refuse" %}
+												<span class="label label-important">{{transationRecord.tState}}</span>
+											{% endifequal %}
+										</td>
 										<td><a target="_blank" href="/propertyInfo/{{transationRecord.tID}}">{{transationRecord.tID}}</td>
 										<td>{{transationRecord.tAccount}}</td>
 										<td>{{transationRecord.consignmentNo}}</td>
@@ -111,15 +125,17 @@
 									{% endfor %}
 								</tbody>
 							</table>
+							<div class="pagination-centered">{% paginate %}</div>
 						</div>
 					</div>
 
 					<!-- Search allocation record -->
 					<div class="search">
 						<ul class="nav nav-tabs" style="margin: 20px 0px;">
-							<li class="active"><a href="#collapse2" data-toggle="collapse">Search Record</a></li>
+							<li class="active"><a href="#collapse3" data-toggle="collapse">Search Record</a></li>
 						</ul>
-						<div class="collapse out" id="collapse2">
+
+						<div class="collapse in" id="collapse3">
 							<form class="form-inline form-search" action='/search' target="_blank">
 								<div class="span3">
 									<label>基金代码 : <input name='tID' type="text" id='tID' class="input-small"></label>
@@ -131,22 +147,22 @@
 									<label>起始日期 : <input name='tdate' type="text" id='tdate' class="input-small" placeholder="yyyy-mm-dd"></label>
 								</div>
 								<div class="span3">
-						   		 <button type="submit" class="btn">Search</button>
+								 <button type="submit" class="btn">Search</button>
 								</div>
 							</form>
 						</div>
-
 					</div>
-
 
 				</div>
 
 			</div>
 		</div>
-		<!-- ================================================= -->
-    	<!-- Placed at the end of the document so the pages load faster -->
+
+		<!-- javascript -->
+		<!-- ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
 		<script type="text/javascript" src="/site_media/js/jquery.js"></script>
-		<script type="text/javascript" src="/site_media/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/site_media/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/site_media/js/myScript.js"></script>
 	</body>
 </html>
